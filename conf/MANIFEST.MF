@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: 1.7.0 (Sun Microsystems Inc.)
+Class-Path: esapi-2.0.1.jar commons-fileupload-1.3.3.jar SerialKiller-0.4-all.jar
+Dependencies: org.apache.xerces export, com.acs.util.acsutil export, ibm.as400 export, org.apache.log4j export, com.acs.validator export, com.itextpdf export, com.acs.soa export,  com.acs.drapi export, org.apache.commons.lang export, org.apache.commons.collections export, org.apache.commons.io export, org.json export

@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<!--
+Build file for Online Account Services Web Site
+Version : 1.0
+Date    : 8/26/04
+-->
+
+<project name="template" default="clean" basedir=".">
+
+<!--     TARGET  ALL      --> 
+<target name="all" depends="init,build,compile,war,jar,ear" />
+
+	
+<!-- Uncomment next line to deploy to Jboss local server-->
+<property name="deploy-to-local-jboss" value="doMe"/>
+<!-- Uncomment next line to deploy to Jboss remote server-->
+<!-- <property name="deploy-to-remote-jboss" value="doMe"/>-->
+
+<property environment="env"/>
+<property name="base" value="."/>
+<property name="appName" value="oas"/>
+<property name="src" value="${base}/src"/>
+<property name="build" value="${base}/build"/>
+<property name="jboss-lib" value="${env.JBOSS_HOME}\modules"/>	
+<property name="local-jboss-dir" value="${env.JBOSS_HOME}"/>
+<property name="deploy-dir-local-jboss" value="${local-jboss-dir}\standalone\deployments"/>
+
+<!-- ======================================= -->
+<!-- Clean up previous build                 -->
+<!-- ======================================= -->
+<target name="init">
+	<echo> USER: ${env.USERNAME}</echo>
+    <delete failonerror="false" includeEmptyDirs="true" >
+        <fileset dir="${build}"/>
+    </delete>
+</target>
+
+<!-- ======================================= -->
+<!-- Create build directories                -->
+<!-- ======================================= -->
+<target name="build" depends="init">
+	<mkdir dir="${build}"/>
+	<mkdir dir="${build}/classes"/>
+</target>
+
+<!-- ====================== -->
+<!-- Compile all the source -->
+<!-- ====================== -->
+<target name="compile" depends="build">
+	<javac debug="true" deprecation="true" srcdir="${src}" destdir="${build}/classes">
+		<classpath>
+			<fileset dir="${base}\lib">
+				<include name="**/*.jar"/>
+			</fileset>	  
+			<fileset dir="${jboss-lib}">
+				<include name="**/*.jar"/>
+			</fileset>	  			
+		</classpath>
+	</javac>
+</target>
+
+
+<!-- =========================================================== -->
+<!-- Build WAR file,exclude test files ,include properties files -->
+<!-- =========================================================== -->
+<target name="war" depends="compile">
+	<war destfile="${build}/${appName}.war" webxml="${base}/WEB-INF/web.xml" manifest="${base}/conf/MANIFEST.MF">
+		
+		<classes dir="${build}/classes">
+			<exclude name="**/*.jar"/>
+			<!-- Dynamic Content EJB classes -->
+			<exclude name="**/*Local.class"/>
+			<exclude name="**/*Bean.class"/>
+			<exclude name="**/entities/*.class"/>
+			<exclude name="**/*VO.class"/>
+		</classes>
+
+
+		<zipfileset dir="${base}/conf" prefix="WEB-INF/classes">
+			<include name="**/*.properties"/>
+			<include name="**/requestmap.xml"/>
+		</zipfileset>
+		
+		<zipfileset dir="${base}/web/oas/templates" prefix="WEB-INF/classes">
+			<include name="**/*.txt"/>
+		</zipfileset>
+		
+		<zipfileset dir="${base}/conf" prefix="WEB-INF">
+			<include name="**/*.tld"/>
+		</zipfileset>		
+			
+		<!-- Start add web pages -->
+		<zipfileset dir="${base}/web/oas/images" prefix="images"/>
+		<zipfileset dir="${base}/web/oas/menuImages" prefix=""/>
+
+		<zipfileset dir="${base}/web/oas/css" prefix="css"/>
+		<zipfileset dir="${base}/web/oas/scripts" prefix=""/>
+		<zipfileset dir="${base}/web/oas/html" prefix="">
+		<include name="index.html"/>
+		</zipfileset>		
+		<zipfileset dir="${base}/web/oas/jsp" prefix="">
+			<exclude name="**/enrollFAQ.jsp"/>
+		</zipfileset>		
+		<zipfileset dir="${base}/web/oas/jsp/cli/cli-updated" prefix=""/>
+		<zipfileset dir="${base}/web/oas/jsp/ppp" prefix=""/>	
+		<zipfileset dir="${base}/web/oas/jsp/authentication" prefix=""/>	
+		<zipfileset dir="${base}/web/dojoToolkit" prefix=""/>
+		<zipfileset dir="${base}/web/oas/jsp/autopay" prefix=""/>
+		
+		<fileset dir="${base}/web/common/jsp"/>
+		<fileset dir="${base}/web/common/includes"/>
+		<fileset dir="${base}/web/common/images"/>		
+		<!-- End add web pages -->
+			
+		<zipfileset dir="${base}/conf" prefix="WEB-INF">
+			<include name="**/jboss-web.xml"/>		
+		</zipfileset>	
+	
+		<lib dir="${base}/lib">
+			<include name="esapi-2.0.1.jar"/>
+			<include name="commons-fileupload-1.3.3.jar"/>
+			<include name="SerialKiller-0.4-all.jar"/>
+		</lib>
+
+	
+	</war>
+
+</target>
+
+<!-- ================================================================================== -->
+<!-- Build EJB-JAR file,include properties files, and business ,utility and EIS classes -->
+<!-- ================================================================================== -->
+<target name="jar" depends="compile">
+
+	<jar destfile="${build}/${appName}Ejb.jar" manifest="${base}/conf/MANIFEST.MF">
+	
+		<fileset dir="${build}\classes"/>
+		
+		<metainf dir="conf">
+		    <include name="persistence.xml"/>
+		</metainf>
+		
+	</jar>
+
+</target>
+<!-- ================================================================= -->
+<!-- Build EAR file ,include data-source.xml and orion-application.xml -->
+<!-- ================================================================= -->
+<target name="ear" depends="war,jar">
+	<ear destfile="${build}/${appName}.ear" appxml="${base}/conf/application.xml" manifest="${base}/conf/MANIFEST.MF">
+		<fileset dir="${build}" includes="*.war,*.jar"/>
+	</ear>
+</target>
+
+<!-- ======================================= -->
+<!-- Deploy WAR file [local]      			 -->
+<!-- THIS IS A Jboss SERVER                  -->
+<!-- ======================================= -->
+<target name="deploy" depends="ear" if="deploy-to-local-jboss">
+    <copy todir="${deploy-dir-local-jboss}" overwrite="true">
+		<fileset dir="${build}">
+        	<include name="${appName}.ear"/>            
+        </fileset>	
+    </copy>
+</target>
+
+<!-- ======================================= -->
+<!-- Clean up				      			 -->
+<!-- ======================================= -->
+<target name="clean" depends="deploy">
+	<!--<delete dir="${build}"/>-->
+</target>
+
+	
+</project>

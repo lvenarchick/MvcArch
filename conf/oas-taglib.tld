@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <short-name>oas</short-name>
+    <uri>oas-taglib</uri>
+    <display-name>oas-taglib</display-name>
+    <small-icon></small-icon>
+    <large-icon></large-icon>
+    <description>Common tags for OAS</description>
+
+    <tag>
+        <name>DateOfBirthTag</name>
+        <tag-class>com.acs.oas.waf.view.taglibs.DateOfBirthTag</tag-class>
+        <body-content>JSP</body-content>
+        <description>Creates a list box that contains date of birth</description>
+        <attribute>
+        	<name>selected</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+        	<name>listBoxName</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>        	
+    </tag> 
+    <tag>
+        <name>BirthMonthTag</name>
+        <tag-class>com.acs.oas.waf.view.taglibs.BirthMonthTag</tag-class>
+        <body-content>JSP</body-content>
+        <description>Creates a list box that contains date of birth</description>
+        <attribute>
+        	<name>selected</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+        	<name>listBoxName</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>        	
+    </tag>
+    <tag>
+        <name>ExpMonthTag</name>
+        <tag-class>com.acs.oas.waf.view.taglibs.ExpMonthTag</tag-class>
+        <body-content>JSP</body-content>
+        <description>Creates a list box that contains Exp Month</description>
+        <attribute>
+        	<name>selected</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+        	<name>listBoxName</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>        	
+    </tag>          
+    <tag>
+        <name>SelectDayTag</name>
+        <tag-class>com.acs.oas.waf.view.taglibs.SelectDayTag</tag-class>
+        <body-content>JSP</body-content>
+        <description>Creates a list box that contains date of birth</description>
+        <attribute>
+        	<name>selected</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+        	<name>listBoxName</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>        	
+    </tag> 
+      <!-- Form Error tag -->
+      <tag>
+        <name>FormErrorTag</name>
+        <tagclass>com.acs.oas.waf.view.taglibs.FormErrorTag</tagclass>
+        <bodycontent>JSP</bodycontent>
+        <info>An input field that can be validated. Use with form tag.</info>
+    
+        <attribute>
+          <name>formError</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+          <name>colspan</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    
+        <attribute>
+          <name>divalign</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+          <name>imgSrc</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+        <attribute>
+          <name>imgWidth</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    
+        <attribute>
+          <name>imgHeigth</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    
+        <attribute>
+          <name>cssClass</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+      </tag>
+    
+
+        
+  
+  <tag>
+        <name>ExpYearTag</name>
+        <tag-class>com.acs.oas.waf.view.taglibs.ExpYearTag</tag-class>
+        <body-content>JSP</body-content>
+        <description>Creates a list box that contains Expiration Year</description>
+        <attribute>
+        	<name>selected</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+        	<name>listBoxName</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>        	
+    </tag> 
+    <tag>
+        <name>ChlQuestionTag</name>
+        <tag-class>com.acs.oas.waf.view.taglibs.OASChlQuestionsTag</tag-class>
+        <body-content>JSP</body-content>
+        <description>Creates a list box that contains Online Challenge Question</description>
+        <attribute>
+        	<name>selected</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+        	<name>data</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>  
+       	
+    </tag>
+        <tag>
+        <name>PicturePassImagesTag</name>
+        <tag-class>com.acs.oas.waf.view.taglibs.OASPicturePassImagesTag</tag-class>
+        <body-content>JSP</body-content>
+        <description>Picture Pass Images</description>
+        <attribute>
+        	<name>category</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+        	<name>pictureNames</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute> 
+        <attribute>
+        	<name>pictureCategories</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute> 
+        <attribute>
+        	<name>pictureIds</name>
+        	<required>true</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute> 
+    </tag>  
+  <!-- Fast Track Info Tag -->
+  <tag>
+    <name>FastTrackTag</name>
+    <tagclass>com.acs.oas.waf.view.taglibs.FastTrackTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>An input field that can be validated. Use with form tag.</info>
+    <attribute>
+      <name>bankName</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>acctLast4</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>    
+    <attribute>
+      <name>action</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute> 
+    <attribute>
+      <name>accountType</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute> 
+    <attribute>
+      <name>checked</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>expDt</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>onClickFunction</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>     
+  </tag>    
+ </taglib>

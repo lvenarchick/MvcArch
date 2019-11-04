@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+	<description>Web.xml file for Template Application</description>
+
+	<filter>
+   		<filter-name>XSSFilter</filter-name>
+    	<filter-class>com.acs.oas.components.filters.XSSFilter</filter-class>
+  	</filter>
+
+	<filter-mapping>
+    	<filter-name>XSSFilter</filter-name>
+    	<url-pattern>/*</url-pattern>
+    	<dispatcher>REQUEST</dispatcher>
+  	</filter-mapping>
+
+	<servlet>
+		<servlet-name>webcontroller</servlet-name>
+		<servlet-class>com.acs.oas.waf.controller.RouterServlet</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>PrintServlet</servlet-name>
+		<servlet-class>com.acs.oas.waf.controller.PrintServlet</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>webcontroller</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>PrintServlet</servlet-name>
+		<url-pattern>/PrintServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GetPDFServlet</servlet-name>
+		<servlet-class>com.acs.oas.waf.controller.GetPDFServlet</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>GetPDFServlet</servlet-name>
+		<url-pattern>/gp</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FingerPrintServlet</servlet-name>
+		<servlet-class>com.acs.oas.waf.controller.FingerPrintServlet</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FingerPrintServlet</servlet-name>
+		<url-pattern>/fp</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>PDFDispute</servlet-name>
+		<servlet-class>com.acs.oas.waf.controller.DisputePdfServlet</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PDFDispute</servlet-name>
+		<url-pattern>*.createpdf</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>15</session-timeout>
+		  <cookie-config>
+		    <secure>true</secure>
+		    <http-only>true</http-only>
+		  </cookie-config>		
+	</session-config>
+
+	<welcome-file-list>
+		<welcome-file>/index.jsp</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/pageNotFound.jsp</location>
+	</error-page>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>
+				restricted methods
+			</web-resource-name>
+			<url-pattern>/*</url-pattern>
+			<http-method>PUT</http-method>
+			<http-method>DELETE</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>TRACE</http-method>
+		</web-resource-collection>
+		<auth-constraint />
+	</security-constraint>
+</web-app>

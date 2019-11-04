@@ -1,0 +1,1 @@
+//use this to add common javascript
