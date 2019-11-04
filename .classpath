@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/commons-fileupload-1.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/esapi-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/gf.jar"/>
+	<classpathentry kind="lib" path="lib/itextpdf-5.5.7.jar"/>
+	<classpathentry kind="lib" path="lib/SerialKiller-0.4-all.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
